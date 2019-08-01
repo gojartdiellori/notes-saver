@@ -1,0 +1,36 @@
+{
+  "name": "color-picker",
+  "version": "1.0.0",
+  "description": "color picker app with react and webpack",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --mode development --open --hot",
+    "build": "webpack --mode production"
+  },
+  "author": "Gojart Diellori",
+  "license": "ISC",
+  "dependencies": {
+    "@jaames/iro": "^4.5.1",
+    "bootstrap": "^4.3.1",
+    "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.9",
+    "react-dom": "^16.8.6",
+    "react-icons-kit": "^1.3.1",
+    "react-router-dom": "^5.0.1",
+    "redux-persist": "^5.10.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "html-webpack-plugin": "^3.2.0",
+    "react-redux": "^7.1.0",
+    "redux": "^4.0.4",
+    "uuid": "^3.3.2",
+    "webpack": "^4.36.1",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2"
+  }
+}
