@@ -13,16 +13,7 @@ class App extends Component {
     notes: []
   };
 
-  componentWillMount() {
-    const s = localStorage.getItem("store");
-    if (s !== null) {
-      const sParsed = JSON.parse(s);
-      console.log(sParsed);
-      this.setState(sParsed);
-    } else {
-      alert("empty");
-    }
-  }
+  componentWillMount() {}
   triggerButton = e => {
     e.preventDefault();
     this.setState({ buttonIsClicked: true });
