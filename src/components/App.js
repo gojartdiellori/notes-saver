@@ -21,9 +21,9 @@ class App extends Component {
   handleOnHide = () => {
     this.setState({ buttonIsClicked: false });
   };
-  handleData = (title, body) => {
+  handleData = (title, body, bg) => {
     const id = uuidv1();
-    this.props.addNotes({ id, title, body });
+    this.props.addNotes({ id, title, body, bg });
     this.setState({ buttonIsClicked: false });
   };
 
