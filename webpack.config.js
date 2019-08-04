@@ -7,6 +7,9 @@ module.exports = {
     path: path.join(__dirname, "/dist"),
     filename: "app.bundle.js"
   },
+  devServer: {
+    historyApiFallback: true
+  },
   module: {
     rules: [
       {

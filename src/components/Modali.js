@@ -3,6 +3,8 @@ import { Form, Modal, Button } from "react-bootstrap";
 import { CirclePicker } from "react-color";
 import { validateTitle } from "../utils/validate";
 import { ERROR_VALIDATE } from "../messages/index";
+import * as color from "../messages/colors";
+
 class Modali extends Component {
   state = {
     title: null,
@@ -10,6 +12,7 @@ class Modali extends Component {
     bg: "white",
     errors: []
   };
+
   handelOnChange = e => {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
@@ -26,6 +29,14 @@ class Modali extends Component {
     this.setState({ bg: color.hex });
     console.log(this.state.bg);
   };
+  colorsArray = [
+    color.FIRST_COLOR,
+    color.SECOND_COLOR,
+    color.THIRD_COLOR,
+    color.FORTH_COLOR,
+    color.FIFTH_COLOR,
+    color.SIXTH_COLOR
+  ];
   render() {
     return (
       <Modal
@@ -68,7 +79,7 @@ class Modali extends Component {
               />
             </Form.Group>
             <CirclePicker
-              colors={["#f44336", "#e91e63", "#607d8b"]}
+              colors={this.colorsArray}
               onChangeComplete={this.handleChangeComplete}
             />
             <hr />

@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import "react-app-polyfill/ie11";
 import configureStore from "./store/index";
 const { persistor, store } = configureStore();
 import App from "./components/App";

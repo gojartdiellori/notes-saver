@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, Link } from "react-bootstrap";
 
 class NavBar extends Component {
   render() {
     return (
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="primary" variant="dark" expand="lg">
         <Navbar.Brand href="/" className="justify-content-md-center">
           Notes
         </Navbar.Brand>
@@ -12,6 +12,7 @@ class NavBar extends Component {
         <Navbar.Collapse className="justify-content-end">
           <Nav className="justify-content-end">
             <Nav.Link onClick={this.props.triggerButton}>Add new note</Nav.Link>
+            <Nav.Link href="/settings">Settings</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

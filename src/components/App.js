@@ -4,6 +4,7 @@ import Modal from "./Modali";
 import { connect } from "react-redux";
 import Notes from "./Notes";
 import uuidv1 from "uuid";
+import Settings from "./Settings";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { addNotes } from "../actions/index";
 
@@ -30,22 +31,24 @@ class App extends Component {
   render() {
     return (
       <div style={{ overflowX: "hidden" }}>
-        <NavBar triggerButton={this.triggerButton} />
-
-        <Modal
-          buttonIsClicked={this.state.buttonIsClicked}
-          handleOnHide={this.handleOnHide}
-          handleData={this.handleData}
-        />
-
-        <br />
         <Router>
+          <NavBar triggerButton={this.triggerButton} />
+
+          <Modal
+            buttonIsClicked={this.state.buttonIsClicked}
+            handleOnHide={this.handleOnHide}
+            handleData={this.handleData}
+          />
+
+          <br />
           {localStorage.setItem("store", JSON.stringify(this.state))}
+
           <Route
             path="/"
             exact
             render={() => <Notes handleOnClickDel={this.handleOnClickDel} />}
           />
+          <Route path="/settings" exact component={Settings} />
         </Router>
       </div>
     );
