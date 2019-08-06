@@ -1,0 +1,19 @@
+.custompicker {
+  width: 25px;
+  padding: 3px;
+  margin-left: 2px;
+  height: 25px;
+  background: red;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50%;
+}
+.custompicker:hover {
+  width: 30px;
+  height: 30px;
+}
+.selected {
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+}

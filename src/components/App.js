@@ -22,15 +22,21 @@ class App extends Component {
   handleOnHide = () => {
     this.setState({ buttonIsClicked: false });
   };
-  handleData = (title, body, bg) => {
+  handleData = (title, body, category) => {
     const id = uuidv1();
-    this.props.addNotes({ id, title, body, bg });
+    this.props.addNotes({ id, title, body, category });
     this.setState({ buttonIsClicked: false });
   };
-
+  //#F0E68C
   render() {
     return (
-      <div style={{ overflowX: "hidden" }}>
+      <div
+        style={{
+          overflowX: "hidden",
+          height: "100vh",
+          backgroundColor: `#F4EDAE`
+        }}
+      >
         <Router>
           <NavBar triggerButton={this.triggerButton} />
 

@@ -3,12 +3,14 @@ import { Form, Modal, Button } from "react-bootstrap";
 import { CirclePicker } from "react-color";
 import { validateTitle } from "../utils/validate";
 import { ERROR_VALIDATE } from "../messages/index";
+import { connect } from "react-redux";
 import * as color from "../messages/colors";
 
 class Modali extends Component {
   state = {
     title: null,
     text: null,
+    category: null,
     bg: "white",
     errors: []
   };
@@ -20,23 +22,25 @@ class Modali extends Component {
   handleSubmit = e => {
     e.preventDefault();
     if (validateTitle(this.state.title) !== ERROR_VALIDATE) {
-      this.props.handleData(this.state.title, this.state.text, this.state.bg);
+      this.props.handleData(
+        this.state.title,
+        this.state.text,
+        this.state.category
+      );
     } else {
       this.setState({ errors: this.state.errors.concat(ERROR_VALIDATE) });
     }
   };
   handleChangeComplete = (color, event) => {
     this.setState({ bg: color.hex });
-    console.log(this.state.bg);
+    console.log(event);
   };
-  colorsArray = [
-    color.FIRST_COLOR,
-    color.SECOND_COLOR,
-    color.THIRD_COLOR,
-    color.FORTH_COLOR,
-    color.FIFTH_COLOR,
-    color.SIXTH_COLOR
-  ];
+  handleSelect = e => {
+    e.preventDefault();
+    let object = JSON.parse(e.target.value);
+    this.setState({ bg: object.color, category: object.name });
+  };
+
   render() {
     return (
       <Modal
@@ -66,6 +70,9 @@ class Modali extends Component {
                 <p>{error}</p>
               ))}
             </Form.Group>
+            <option value="" selected disabled hidden>
+              Choose here
+            </option>
 
             <Form.Group controlId="formBody">
               <Form.Label>Text</Form.Label>
@@ -78,10 +85,26 @@ class Modali extends Component {
                 placeholder="Your text goes here!"
               />
             </Form.Group>
-            <CirclePicker
-              colors={this.colorsArray}
-              onChangeComplete={this.handleChangeComplete}
-            />
+            <Form.Group controlId="exampleForm.ControlSelect1">
+              <Form.Label>
+                Category<span style={{ color: "red" }}>*</span>
+              </Form.Label>
+
+              <Form.Control as="select" onChange={this.handleSelect}>
+                <option value="" selected disabled hidden>
+                  Choose here
+                </option>
+                {this.props.categories.map(category => (
+                  <option value={JSON.stringify(category)}>
+                    {category.name}
+                  </option>
+                ))}
+              </Form.Control>
+            </Form.Group>
+            <p style={{ color: "red", fontSize: "11px" }}>
+              *Colors of notes will change depending of category choice, however
+              you can change this default configuration on settings
+            </p>
             <hr />
             <Button variant="primary" type="submit">
               Submit
@@ -93,4 +116,11 @@ class Modali extends Component {
   }
 }
 
-export default Modali;
+const mapStateToProps = state => {
+  return { categories: state.settings.categories };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(Modali);

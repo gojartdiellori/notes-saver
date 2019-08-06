@@ -3,7 +3,7 @@ export const SECOND_COLOR = "#FF5438";
 
 export const THIRD_COLOR = "#F64E8F";
 
-export const FORTH_COLOR = "#5CBE71";
+export const FOURTH_COLOR = "#5CBE71";
 
 export const FIFTH_COLOR = "#5EAAC2";
 

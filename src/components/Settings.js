@@ -8,12 +8,17 @@ import {
   ListGroup
 } from "react-bootstrap";
 import { connect } from "react-redux";
-import { addNewCategory } from "../actions/index";
+import { SketchPicker } from "react-color";
+import * as color from "../messages/colors";
+import CustomPicker from "../components/CustomPicker";
+import { addNewCategory, changeColor } from "../actions/index";
 
 class Settings extends Component {
   state = {
-    category: ""
+    category: "",
+    displayColorPicker: false
   };
+  colorsArray = [color.FIRST_COLOR];
   handleOnChange = e => {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
@@ -23,18 +28,18 @@ class Settings extends Component {
     const categoryState = this.state.category;
     this.props.addNewCategory(categoryState);
   };
+  handleDisplayPicker = () => {
+    this.setState({ displayColorPicker: true });
+  };
+  changeCurrentColor = (id, key) => {
+    console.log(id);
+    console.log(key);
+    this.setState({ color: id });
+    this.props.changeColor({ id, key });
+  };
   render() {
     return (
       <Container>
-        {this.props.settings.firstTime ? (
-          <Jumbotron fluid style={{ padding: "20px" }}>
-            <h1>Welcome to your profile</h1>
-            <p>This is your first time here!</p>
-            <p>You can build up your profile here and make your own settings</p>
-          </Jumbotron>
-        ) : (
-          <div />
-        )}
         <div style={{ paddingLeft: "200px", paddingRight: "200px" }}>
           <InputGroup className="mb-3">
             <InputGroup.Prepend>
@@ -73,8 +78,24 @@ class Settings extends Component {
             <ListGroup.Item variant="dark">
               <b>Current Categories</b>
             </ListGroup.Item>
-            {this.props.settings.categories.map(category1 => (
-              <ListGroup.Item>{category1}</ListGroup.Item>
+            {this.props.settings.categories.map((category1, key) => (
+              <ListGroup.Item
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center"
+                }}
+              >
+                <span> {category1.name}</span>
+                <span>
+                  <CustomPicker
+                    idCategory={key}
+                    color={category1.color}
+                    changeCurrentColor={this.changeCurrentColor}
+                  />
+                </span>
+              </ListGroup.Item>
             ))}
           </ListGroup>
         </div>
@@ -88,7 +109,8 @@ const mapStateToProps = state => {
 };
 function mapDispatchToProps(dispatch) {
   return {
-    addNewCategory: category => dispatch(addNewCategory(category))
+    addNewCategory: category => dispatch(addNewCategory(category)),
+    changeColor: color => dispatch(changeColor(color))
   };
 }
 

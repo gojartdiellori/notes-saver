@@ -4,7 +4,7 @@ import { Navbar, Nav, Link } from "react-bootstrap";
 class NavBar extends Component {
   render() {
     return (
-      <Navbar bg="primary" variant="dark" expand="lg">
+      <Navbar bg="dark" variant="dark" expand="lg">
         <Navbar.Brand href="/" className="justify-content-md-center">
           Notes
         </Navbar.Brand>

@@ -1,7 +1,8 @@
 import {
   ADD_NOTES,
   DELETE_NOTES,
-  ADD_NEW_CATEGORY
+  ADD_NEW_CATEGORY,
+  CHANGE_COLOR
 } from "../constants/action-type";
 import { initalStore } from "../store/initalStore";
 
@@ -19,6 +20,20 @@ function rootReducer(state = initalStore, action) {
       settings: {
         ...state.settings,
         categories: [...state.settings.categories, action.payload]
+      }
+    });
+  } else if (action.type === CHANGE_COLOR) {
+    return Object.assign({}, state, {
+      settings: {
+        ...state.settings,
+        categories: state.settings.categories.map((content, i) =>
+          i === action.payload.key
+            ? {
+                ...content,
+                color: action.payload.id
+              }
+            : content
+        )
       }
     });
   }
