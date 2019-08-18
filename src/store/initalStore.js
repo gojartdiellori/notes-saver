@@ -2,6 +2,7 @@ import * as colorMes from "../messages/colors";
 
 export const initalStore = {
   notes: [],
+  notesClick: false,
   settings: {
     firstTime: true,
     categories: [

@@ -2,7 +2,8 @@ import {
   ADD_NOTES,
   DELETE_NOTES,
   ADD_NEW_CATEGORY,
-  CHANGE_COLOR
+  CHANGE_COLOR,
+  SWITCH_NOTE_MODAL
 } from "../constants/action-type";
 import { initalStore } from "../store/initalStore";
 
@@ -35,6 +36,10 @@ function rootReducer(state = initalStore, action) {
             : content
         )
       }
+    });
+  } else if (action.type === SWITCH_NOTE_MODAL) {
+    return Object.assign({}, state, {
+      notesClick: action.payload.boolean
     });
   }
   return state;

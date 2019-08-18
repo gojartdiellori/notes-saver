@@ -2,7 +2,8 @@ import {
   ADD_NOTES,
   DELETE_NOTES,
   ADD_NEW_CATEGORY,
-  CHANGE_COLOR
+  CHANGE_COLOR,
+  SWITCH_NOTE_MODAL
 } from "../constants/action-type";
 
 export function addNotes(payload) {
@@ -16,4 +17,7 @@ export function addNewCategory(payload) {
 }
 export function changeColor(payload) {
   return { type: CHANGE_COLOR, payload };
+}
+export function notesClick(payload) {
+  return { type: SWITCH_NOTE_MODAL, payload };
 }

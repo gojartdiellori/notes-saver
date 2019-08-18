@@ -33,7 +33,7 @@ class App extends Component {
       <div
         style={{
           overflowX: "hidden",
-          height: "100vh",
+          minHeight: "100vh",
           backgroundColor: `#F4EDAE`
         }}
       >

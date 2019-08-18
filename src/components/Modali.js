@@ -5,11 +5,13 @@ import { validateTitle } from "../utils/validate";
 import { ERROR_VALIDATE } from "../messages/index";
 import { connect } from "react-redux";
 import * as color from "../messages/colors";
+import { notesClick } from "../actions";
 
 class Modali extends Component {
   state = {
     title: null,
     text: null,
+    boolean: false,
     category: null,
     bg: "white",
     errors: []
@@ -35,6 +37,9 @@ class Modali extends Component {
     this.setState({ bg: color.hex });
     console.log(event);
   };
+  handleOnHide = () => {
+    this.props.notesClicke(this.state.boolean);
+  };
   handleSelect = e => {
     e.preventDefault();
     let object = JSON.parse(e.target.value);
@@ -44,8 +49,8 @@ class Modali extends Component {
   render() {
     return (
       <Modal
-        show={this.props.buttonIsClicked}
-        onHide={this.props.handleOnHide}
+        show={this.props.notesClick}
+        onHide={this.handleOnHide}
         size="md"
         aria-labelledby="contained-modal-title-vcenter"
         centered
@@ -117,10 +122,18 @@ class Modali extends Component {
 }
 
 const mapStateToProps = state => {
-  return { categories: state.settings.categories };
+  return {
+    categories: state.settings.categories,
+    notesClick: state.notesClick
+  };
 };
+function mapDispatchToProps(dispatch) {
+  return {
+    notesClicke: boolean => dispatch(notesClick(boolean))
+  };
+}
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(Modali);
